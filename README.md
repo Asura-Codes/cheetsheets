@@ -1,3 +1,3 @@
 # cheetsheets
 
-+ [RemoteGDB\środowisko-i-konfiguracja.html](Praca z oprogramowaniem dla Compute Module 4 - zdalne debugowanie)
++ [Praca z oprogramowaniem dla Compute Module 4 - zdalne debugowanie](https://asura-codes.github.io/cheetsheets/RemoteGDB/%C5%9Brodowisko-i-konfiguracja.html)
