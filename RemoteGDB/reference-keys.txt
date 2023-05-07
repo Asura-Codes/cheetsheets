@@ -1,0 +1,14 @@
+środowisko-i-konfiguracja
+obrazy-systemu-operacyjnego
+instalacja-visual-studio-code
+cc-z-cmake-dla-arm
+o-plikach-cmakelists.txt
+bardziej-rozbudowany-projekt
+warto-napisać-skrypt-dla-kompilacji
+debugowanie-zdalne-z-gdb-the-gnu-project-debugger
+instalacja
+konfiguracja
+problemy
+uruchamianie-aplikacji-przy-starcie
+definiowanie-usługi
+podstawowe-polecenia-systemctl

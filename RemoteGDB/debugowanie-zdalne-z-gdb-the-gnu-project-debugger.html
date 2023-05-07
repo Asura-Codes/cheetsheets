@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pl-PL" xml:lang="pl-PL">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Rozdział 2 Debugowanie zdalne z GDB (The GNU Project Debugger) | Praca z oprogramowaniem dla Compute Module 4 (Raspberry Pi)</title>
+  <meta name="description" content="Rozdział 2 Debugowanie zdalne z GDB (The GNU Project Debugger) | Praca z oprogramowaniem dla Compute Module 4 (Raspberry Pi)" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Rozdział 2 Debugowanie zdalne z GDB (The GNU Project Debugger) | Praca z oprogramowaniem dla Compute Module 4 (Raspberry Pi)" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="Asura-Codes/CheetSheets" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Rozdział 2 Debugowanie zdalne z GDB (The GNU Project Debugger) | Praca z oprogramowaniem dla Compute Module 4 (Raspberry Pi)" />
+  
+  
+  
+
+<meta name="author" content="Patryk Tomaszewski" />
+
+
+<meta name="date" content="2023-05-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="środowisko-i-konfiguracja.html"/>
+<link rel="next" href="uruchamianie-aplikacji-przy-starcie.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="../styles.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://asura-codes.github.io">Asura Codes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="środowisko-i-konfiguracja.html"><a href="środowisko-i-konfiguracja.html"><i class="fa fa-check"></i><b>1</b> Środowisko i konfiguracja</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="środowisko-i-konfiguracja.html"><a href="środowisko-i-konfiguracja.html#obrazy-systemu-operacyjnego"><i class="fa fa-check"></i><b>1.1</b> Obrazy systemu operacyjnego</a></li>
+<li class="chapter" data-level="1.2" data-path="środowisko-i-konfiguracja.html"><a href="środowisko-i-konfiguracja.html#instalacja-visual-studio-code"><i class="fa fa-check"></i><b>1.2</b> Instalacja Visual Studio Code</a></li>
+<li class="chapter" data-level="1.3" data-path="środowisko-i-konfiguracja.html"><a href="środowisko-i-konfiguracja.html#cc-z-cmake-dla-arm"><i class="fa fa-check"></i><b>1.3</b> C/C++ z CMake dla ARM</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="środowisko-i-konfiguracja.html"><a href="środowisko-i-konfiguracja.html#o-plikach-cmakelists.txt"><i class="fa fa-check"></i><b>1.3.1</b> O plikach <em>CMakeLists.txt</em></a></li>
+<li class="chapter" data-level="1.3.2" data-path="środowisko-i-konfiguracja.html"><a href="środowisko-i-konfiguracja.html#warto-napisać-skrypt-dla-kompilacji"><i class="fa fa-check"></i><b>1.3.2</b> Warto napisać skrypt dla kompilacji</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html"><i class="fa fa-check"></i><b>2</b> Debugowanie zdalne z GDB (The GNU Project Debugger)</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#instalacja"><i class="fa fa-check"></i><b>2.1</b> Instalacja</a></li>
+<li class="chapter" data-level="2.2" data-path="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#konfiguracja"><i class="fa fa-check"></i><b>2.2</b> Konfiguracja</a></li>
+<li class="chapter" data-level="2.3" data-path="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#problemy"><i class="fa fa-check"></i><b>2.3</b> Problemy</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="uruchamianie-aplikacji-przy-starcie.html"><a href="uruchamianie-aplikacji-przy-starcie.html"><i class="fa fa-check"></i><b>3</b> Uruchamianie aplikacji przy starcie</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="uruchamianie-aplikacji-przy-starcie.html"><a href="uruchamianie-aplikacji-przy-starcie.html#definiowanie-usługi"><i class="fa fa-check"></i><b>3.1</b> Definiowanie usługi</a></li>
+<li class="chapter" data-level="3.2" data-path="uruchamianie-aplikacji-przy-starcie.html"><a href="uruchamianie-aplikacji-przy-starcie.html#podstawowe-polecenia-systemctl"><i class="fa fa-check"></i><b>3.2</b> Podstawowe polecenia systemctl</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/Asura-Codes/cheetsheets" target="_blank">Zobacz więcej..</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><p><strong>Praca z oprogramowaniem dla Compute Module 4 (Raspberry Pi)</strong></p></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="debugowanie-zdalne-z-gdb-the-gnu-project-debugger" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Rozdział 2</span> Debugowanie zdalne z GDB (The GNU Project Debugger)<a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#debugowanie-zdalne-z-gdb-the-gnu-project-debugger" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>GNU Debugger (GDB) – debugger będący częścią projektu GNU, napisany w 1988 r. przez Richarda Stallmana. Program obsługuje wiele architektur komputera i jest dostępny dla wielu systemów operacyjnych. Potrafi otworzyć bardzo dużo formatów binarnych, zawdzięcza to BFD. Zazwyczaj zamiast pełnej nazwy używa się akronimu GDB. GNU Debugger jest dostępny na warunkach licencji GNU General Public License.</p>
+<div id="instalacja" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Instalacja<a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#instalacja" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Instalacja <strong>gdb-multiarch</strong>:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb47-1"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb47-1" tabindex="-1"></a><span class="fu">sudo</span> apt-get update</span>
+<span id="cb47-2"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb47-2" tabindex="-1"></a><span class="fu">sudo</span> apt install gdb-multiarch</span></code></pre></div>
+<p>Instalacja rozszerzenia <strong>Native Debug</strong> (by <em>WebFreak</em>):</p>
+<p><img src="img/ExtensionNativeDebug.png" style="width:100.0%" /></p>
+</div>
+<div id="konfiguracja" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Konfiguracja<a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#konfiguracja" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>W zakładce debugowania klikamy na “create a launch.json file”, następnie wybieramy GDB:</p>
+<p><img src="img/ConfigureDebugging.png" style="width:100.0%" /></p>
+<p>Otwieramy plik:</p>
+<blockquote>
+<p>.vscode\settings.json</p>
+</blockquote>
+<p>Zawartość przedstawia się następująco:</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb48-1"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb48-1" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb48-2"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb48-2" tabindex="-1"></a>    <span class="er">//</span> <span class="er">Use</span> <span class="er">IntelliSense</span> <span class="er">to</span> <span class="er">learn</span> <span class="er">about</span> <span class="er">possible</span> <span class="er">attributes.</span></span>
+<span id="cb48-3"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb48-3" tabindex="-1"></a>    <span class="er">//</span> <span class="er">Hover</span> <span class="er">to</span> <span class="er">view</span> <span class="er">descriptions</span> <span class="er">of</span> <span class="er">existing</span> <span class="er">attributes.</span></span>
+<span id="cb48-4"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb48-4" tabindex="-1"></a>    <span class="er">//</span> <span class="er">For</span> <span class="er">more</span> <span class="er">information</span><span class="fu">,</span> <span class="er">visit</span><span class="fu">:</span> <span class="er">https://go.microsoft.com/fwlink/?linkid=</span><span class="dv">830387</span></span>
+<span id="cb48-5"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb48-5" tabindex="-1"></a>    <span class="st">&quot;version&quot;</span><span class="er">:</span> <span class="st">&quot;0.2.0&quot;</span><span class="fu">,</span></span>
+<span id="cb48-6"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb48-6" tabindex="-1"></a>    <span class="dt">&quot;configurations&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb48-7"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb48-7" tabindex="-1"></a>        <span class="fu">{</span></span>
+<span id="cb48-8"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb48-8" tabindex="-1"></a>            <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Debug&quot;</span><span class="fu">,</span></span>
+<span id="cb48-9"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb48-9" tabindex="-1"></a>            <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;gdb&quot;</span><span class="fu">,</span></span>
+<span id="cb48-10"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb48-10" tabindex="-1"></a>            <span class="dt">&quot;request&quot;</span><span class="fu">:</span> <span class="st">&quot;launch&quot;</span><span class="fu">,</span></span>
+<span id="cb48-11"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb48-11" tabindex="-1"></a>            <span class="dt">&quot;target&quot;</span><span class="fu">:</span> <span class="st">&quot;./bin/executable&quot;</span><span class="fu">,</span></span>
+<span id="cb48-12"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb48-12" tabindex="-1"></a>            <span class="dt">&quot;cwd&quot;</span><span class="fu">:</span> <span class="st">&quot;${workspaceRoot}&quot;</span><span class="fu">,</span></span>
+<span id="cb48-13"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb48-13" tabindex="-1"></a>            <span class="dt">&quot;valuesFormatting&quot;</span><span class="fu">:</span> <span class="st">&quot;parseText&quot;</span></span>
+<span id="cb48-14"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb48-14" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb48-15"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb48-15" tabindex="-1"></a>    <span class="ot">]</span></span>
+<span id="cb48-16"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb48-16" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p>Definicje możemy prześledzić <a href="https://github.com/microsoft/vscode-cmake-tools/blob/main/src/debugger.ts">tutaj</a>. Parametry oznaczają:</p>
+<ul>
+<li><strong>name</strong> - nazwa konfiguracji,</li>
+<li><strong>type</strong> - typ konfiguracji (ustawienia gdb),</li>
+<li><strong>request</strong> - polecenie uruchomienia,</li>
+<li><strong>target</strong> - cel uruchomienia,</li>
+<li><strong>cwd</strong> - folder uruchomienia,</li>
+<li><strong>valuesFormatting</strong> - formatowanie danych (zmienne w pamięci dla debugera, itd.).</li>
+</ul>
+<p>Do zdalnego debugowania plik należy zmodyfikować:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb49-1"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb49-1" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb49-2"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb49-2" tabindex="-1"></a>    <span class="er">//</span> <span class="er">Użyj</span> <span class="er">funkcji</span> <span class="er">IntelliSense</span><span class="fu">,</span> <span class="er">aby</span> <span class="er">uzyskać</span> <span class="er">informacje</span> <span class="er">o</span> <span class="er">możliwych</span> <span class="er">atrybutach.</span></span>
+<span id="cb49-3"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb49-3" tabindex="-1"></a>    <span class="er">//</span> <span class="er">Najedź</span> <span class="er">kursorem</span><span class="fu">,</span> <span class="er">aby</span> <span class="er">wyświetlić</span> <span class="er">opisy</span> <span class="er">istniejących</span> <span class="er">atrybutów.</span></span>
+<span id="cb49-4"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb49-4" tabindex="-1"></a>    <span class="er">//</span> <span class="er">Aby</span> <span class="er">uzyskać</span> <span class="er">więcej</span> <span class="er">informacji</span><span class="fu">,</span> <span class="er">odwiedź</span> <span class="er">stronę</span><span class="fu">:</span> <span class="er">https://go.microsoft.com/fwlink/?linkid=</span><span class="dv">830387</span></span>
+<span id="cb49-5"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb49-5" tabindex="-1"></a>    <span class="st">&quot;version&quot;</span><span class="er">:</span> <span class="st">&quot;0.2.0&quot;</span><span class="fu">,</span></span>
+<span id="cb49-6"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb49-6" tabindex="-1"></a>    <span class="dt">&quot;configurations&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb49-7"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb49-7" tabindex="-1"></a>        <span class="fu">{</span></span>
+<span id="cb49-8"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb49-8" tabindex="-1"></a>            <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Attach to gdbserver&quot;</span><span class="fu">,</span></span>
+<span id="cb49-9"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb49-9" tabindex="-1"></a>            <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;gdb&quot;</span><span class="fu">,</span></span>
+<span id="cb49-10"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb49-10" tabindex="-1"></a>            <span class="dt">&quot;request&quot;</span><span class="fu">:</span> <span class="st">&quot;attach&quot;</span><span class="fu">,</span></span>
+<span id="cb49-11"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb49-11" tabindex="-1"></a>            <span class="dt">&quot;executable&quot;</span><span class="fu">:</span> <span class="st">&quot;./DebugARM/aplikacja&quot;</span><span class="fu">,</span></span>
+<span id="cb49-12"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb49-12" tabindex="-1"></a>            <span class="dt">&quot;target&quot;</span><span class="fu">:</span> <span class="st">&quot;192.168.1.123:9999&quot;</span><span class="fu">,</span></span>
+<span id="cb49-13"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb49-13" tabindex="-1"></a>            <span class="dt">&quot;remote&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb49-14"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb49-14" tabindex="-1"></a>            <span class="dt">&quot;cwd&quot;</span><span class="fu">:</span> <span class="st">&quot;${workspaceRoot}&quot;</span><span class="fu">,</span> </span>
+<span id="cb49-15"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb49-15" tabindex="-1"></a>            <span class="dt">&quot;gdbpath&quot;</span><span class="fu">:</span> <span class="st">&quot;gdb-multiarch&quot;</span><span class="fu">,</span></span>
+<span id="cb49-16"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb49-16" tabindex="-1"></a>            <span class="dt">&quot;debugger_args&quot;</span> <span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;-iex=set solib-search-path  = </span><span class="ch">\&quot;</span><span class="st">./DebugARM/</span><span class="ch">\&quot;</span><span class="st">&quot;</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb49-17"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb49-17" tabindex="-1"></a>            <span class="dt">&quot;valuesFormatting&quot;</span><span class="fu">:</span> <span class="st">&quot;parseText&quot;</span></span>
+<span id="cb49-18"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb49-18" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb49-19"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb49-19" tabindex="-1"></a>    <span class="ot">]</span></span>
+<span id="cb49-20"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb49-20" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p>Jak konkretnie wykorzystywane są powyższe parametry możemy zobaczyć <a href="https://github.com/WebFreak001/code-debug/blob/master/src/gdb.ts">tutaj</a>. Oznaczają mniej więcej:</p>
+<ul>
+<li><strong>request</strong> - w tym wypadku informacja dla <strong>VSCode</strong> o zdalnym debugowaniu,</li>
+<li><strong>executable</strong> - zawartość <strong>target</strong> z poprzedniej konfiguracji,</li>
+<li><strong>target</strong> - tym razem celem jest Raspberry Pi pod adresem <em>192.168.1.123</em>,</li>
+<li><strong>remote</strong> - informacja dla <strong>Native Debug</strong> o zdalnym debugowaniu,</li>
+<li><strong>gdbpath</strong> - plik wykonywalny gdb,</li>
+<li><strong>debugger_args</strong> - argumenty przekazywane do gdb.</li>
+</ul>
+<p>Uruchomienie na <strong>CM4</strong>:</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb50-1"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb50-1" tabindex="-1"></a><span class="ex">gdbserver</span> localhost:9999 ./aplikacja</span></code></pre></div>
+</div>
+<div id="problemy" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Problemy<a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#problemy" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Podczas uruchomienia aplikacji może okazać się, że nie znajduje biblioteki (w tym przypadku <code>libcommon.so</code>) będącej w bieżącym folderze. Aby uniknąć każdorazowego kopiowania biblioteki do np. <code>/usr/lib</code> można uruchamiać program w następujący sposób:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb51-1"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#cb51-1" tabindex="-1"></a><span class="va">LD_LIBRARY_PATH</span><span class="op">=</span>/home/user/cmakeQuickStart <span class="ex">gdbserver</span> localhost:9999 ./aplikacja</span></code></pre></div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="środowisko-i-konfiguracja.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="uruchamianie-aplikacji-przy-starcie.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub", "_main.mobi"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

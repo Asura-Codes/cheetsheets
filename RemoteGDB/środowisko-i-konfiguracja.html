@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="pl-PL" xml:lang="pl-PL">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Praca z oprogramowaniem dla Compute Module 4 (Raspberry Pi)</title>
+  <meta name="description" content="Praca z oprogramowaniem dla Compute Module 4 (Raspberry Pi)" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Praca z oprogramowaniem dla Compute Module 4 (Raspberry Pi)" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="Asura-Codes/CheetSheets" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Praca z oprogramowaniem dla Compute Module 4 (Raspberry Pi)" />
+  
+  
+  
+
+<meta name="author" content="Patryk Tomaszewski" />
+
+
+<meta name="date" content="2023-05-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="../styles.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://asura-codes.github.io">Asura Codes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="środowisko-i-konfiguracja.html"><a href="środowisko-i-konfiguracja.html"><i class="fa fa-check"></i><b>1</b> Środowisko i konfiguracja</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="środowisko-i-konfiguracja.html"><a href="środowisko-i-konfiguracja.html#obrazy-systemu-operacyjnego"><i class="fa fa-check"></i><b>1.1</b> Obrazy systemu operacyjnego</a></li>
+<li class="chapter" data-level="1.2" data-path="środowisko-i-konfiguracja.html"><a href="środowisko-i-konfiguracja.html#instalacja-visual-studio-code"><i class="fa fa-check"></i><b>1.2</b> Instalacja Visual Studio Code</a></li>
+<li class="chapter" data-level="1.3" data-path="środowisko-i-konfiguracja.html"><a href="środowisko-i-konfiguracja.html#cc-z-cmake-dla-arm"><i class="fa fa-check"></i><b>1.3</b> C/C++ z CMake dla ARM</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="środowisko-i-konfiguracja.html"><a href="środowisko-i-konfiguracja.html#o-plikach-cmakelists.txt"><i class="fa fa-check"></i><b>1.3.1</b> O plikach <em>CMakeLists.txt</em></a></li>
+<li class="chapter" data-level="1.3.2" data-path="środowisko-i-konfiguracja.html"><a href="środowisko-i-konfiguracja.html#warto-napisać-skrypt-dla-kompilacji"><i class="fa fa-check"></i><b>1.3.2</b> Warto napisać skrypt dla kompilacji</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html"><i class="fa fa-check"></i><b>2</b> Debugowanie zdalne z GDB (The GNU Project Debugger)</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#instalacja"><i class="fa fa-check"></i><b>2.1</b> Instalacja</a></li>
+<li class="chapter" data-level="2.2" data-path="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#konfiguracja"><i class="fa fa-check"></i><b>2.2</b> Konfiguracja</a></li>
+<li class="chapter" data-level="2.3" data-path="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html"><a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html#problemy"><i class="fa fa-check"></i><b>2.3</b> Problemy</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="uruchamianie-aplikacji-przy-starcie.html"><a href="uruchamianie-aplikacji-przy-starcie.html"><i class="fa fa-check"></i><b>3</b> Uruchamianie aplikacji przy starcie</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="uruchamianie-aplikacji-przy-starcie.html"><a href="uruchamianie-aplikacji-przy-starcie.html#definiowanie-usługi"><i class="fa fa-check"></i><b>3.1</b> Definiowanie usługi</a></li>
+<li class="chapter" data-level="3.2" data-path="uruchamianie-aplikacji-przy-starcie.html"><a href="uruchamianie-aplikacji-przy-starcie.html#podstawowe-polecenia-systemctl"><i class="fa fa-check"></i><b>3.2</b> Podstawowe polecenia systemctl</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/Asura-Codes/cheetsheets" target="_blank">Zobacz więcej..</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><p><strong>Praca z oprogramowaniem dla Compute Module 4 (Raspberry Pi)</strong></p></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title"><p><strong>Praca z oprogramowaniem dla Compute Module 4 (Raspberry Pi)</strong></p></h1>
+<p class="author"><em>Patryk Tomaszewski</em></p>
+<p class="date"><em>2023-05-07</em></p>
+</div>
+<div id="środowisko-i-konfiguracja" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Rozdział 1</span> Środowisko i konfiguracja<a href="środowisko-i-konfiguracja.html#środowisko-i-konfiguracja" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>W zależności od platformy sprzętowej, używanych języków programowania oraz specyfiki projektu, debugowanie pisanego oprogramowania różni się, ale zasadniczo zawsze sprowadza do identycznych możliwości (np. kroczenie po kodzie, czy przeglądanie wartości zmiennych). W tej notce opiszę jak można skonfigurować <em>VSCode</em> do debugowania programu c++ na platformie <strong>CM4</strong> ze swojego sprzętu komputerowego po sieci.</p>
+<blockquote>
+<p>Raspberry Pi CM4 to zminiaturyzowana wersja minikomputera Raspberry Pi 4B.<br />
+Kompatybilna z gniazdami płytki CM4IO Board. Płytka oparta została na procesorze Broadcom BCM2711 z 4 GB pamięci RAM oraz 32 GB pamięci eMMC. Moduł wyposażony w komunikację bezprzewodową WiFi / Bluetooth.</p>
+</blockquote>
+<p>Dlaczego to jest potrzebne? Korzystanie z takich interfejsów jak <em>I2C</em>, <em>SPI</em>, <em>UART</em>, których na swoim komputerze przeważnie nie posiadamy, czy wykorzystanie możliwości GPIO może sprawiać problemy, które rozwiązuje się dopiero po zrozumieniu problemu. Natomiast zrozumieć problem w kodzie (szczególnie swoim) jest możliwe w momencie, gdy widzimy co się dzieje, a w tym szczególnie pomocny jest debugger.</p>
+<p>Z drugiej strony dlaczego nie pisać programu, kompilować go i uruchamiać w IDE na RPI? Kompilacja na <strong>Raspberry</strong> (i innych platformach Embedded) większych projektów jest czasochłonna (mozolne, żmudne i uciążliwe wręcz). Kompilacja na wielordzeniowym laptopie czy komputerze programów na platformę ARM za pomocą cross-kompilatora wypada znacznie lepiej.</p>
+<p>Ze względu na różnorodność systemów operacyjnych i co ważniejsze obecności <strong>Windows 7</strong> na świecie (brak już wsparcia Microsoft’u) używać będę <strong>VBox</strong>’a z obrazem systemu na architekturę <strong>amd64</strong> (obecnym na <strong>CM4</strong> tylko w architekturze <strong>ARM</strong>). Wspomnieć mogę jeszcze o <strong>WSL</strong> obecnym na Win10, czy <strong>Dockerze</strong>, które mogłyby <em>“trochę”</em> zoptymalizować pracę, ale opis tutaj będzie nieco <em>oldschool’owy</em>.</p>
+<div id="obrazy-systemu-operacyjnego" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Obrazy systemu operacyjnego<a href="środowisko-i-konfiguracja.html#obrazy-systemu-operacyjnego" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Na platformie <strong>CM4</strong>: <a href="https://www.raspberrypi.com/software/operating-systems/">Raspberry Pi OS</a></p>
+<blockquote>
+<p>Release date: September 22nd 2022<br />
+Kernel version: 5.10<br />
+Debian version: 10 (buster)</p>
+</blockquote>
+<p><a href="https://www.osboxes.org/raspbian/">Link do obrazów na <strong>VBox</strong>’a.</a></p>
+<p>Można również pobrać obraz <strong>Raspberry Pi OS</strong> i uruchomić go na Virtual Box’ie (<a href="https://pimylifeup.com/raspberry-pi-virtualbox/">szczegółowy opis by Emmet, ang.</a>).</p>
+</div>
+<div id="instalacja-visual-studio-code" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Instalacja Visual Studio Code<a href="środowisko-i-konfiguracja.html#instalacja-visual-studio-code" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>VSCode (Visual Studio Code z Microsoft’u) jest obecny na platformach Windows, Linux i macOS. Od lipca 2016 roku Marketplace (oferujący rozszerzenia) urósł pokaźnie, a sama instalacja rozszerzenia sprowadza się do kliknięcia “Instaluj” (w przypadku dobrze zarządzanych projektów).</p>
+<p>Instalacja VSCode w VBox’ie, ale najpierw, aby uniknąć przypadkowych błędów, aktualizacja indeksu APT:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="środowisko-i-konfiguracja.html#cb1-1" tabindex="-1"></a><span class="fu">sudo</span> apt-get update</span></code></pre></div>
+<p>Pobieranie <em>curl</em> (jeśli jescze go nie mamy):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="środowisko-i-konfiguracja.html#cb2-1" tabindex="-1"></a><span class="fu">sudo</span> apt install gnupg2 software-properties-common apt-transport-https curl</span></code></pre></div>
+<p>Pobieranie klucza i dodawanie do zaufanych w APT:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="środowisko-i-konfiguracja.html#cb3-1" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-sSL</span> https://packages.microsoft.com/keys/microsoft.asc <span class="kw">|</span> <span class="fu">sudo</span> apt-key add <span class="at">-</span></span></code></pre></div>
+<p>Dodanie repozytorium VSCode’a:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="środowisko-i-konfiguracja.html#cb4-1" tabindex="-1"></a><span class="fu">sudo</span> add-apt-repository <span class="st">&quot;deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main&quot;</span></span></code></pre></div>
+<p>Aktualizacja indeksu (wyżej dodane zostało repo, dlatego potrzebna jest ponowna aktualizacja):</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="środowisko-i-konfiguracja.html#cb5-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span></code></pre></div>
+<p>W końcu instalacja Visual Studio Code:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="środowisko-i-konfiguracja.html#cb6-1" tabindex="-1"></a><span class="fu">sudo</span> apt install code</span></code></pre></div>
+<p>W przypadku, gdy jedynym użytkownikiem w systemie jest <strong>root</strong> albo po prostu chcemy uruchomić IDE z poziomu <strong>sudoers</strong>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="środowisko-i-konfiguracja.html#cb7-1" tabindex="-1"></a><span class="ex">code</span> <span class="at">--no-sandbox</span> <span class="at">--user-data-dir</span> /home/user/</span></code></pre></div>
+</div>
+<div id="cc-z-cmake-dla-arm" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> C/C++ z CMake dla ARM<a href="środowisko-i-konfiguracja.html#cc-z-cmake-dla-arm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>CMake z pomocą plików <em>CMakeLists.txt</em> służy do zarządzania procesem kompilacji programu, a właściwie to składa konfigurację, czyli pliki z regułami kompilacji dla wybieranego przez użytkownika środowiska, sam nie kompiluje programu. Jego główną cechą jest niezależność od używanego kompilatora oraz platformy sprzętowej.</p>
+<p>Instalacja CMake:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="środowisko-i-konfiguracja.html#cb8-1" tabindex="-1"></a><span class="fu">sudo</span> apt-get update</span>
+<span id="cb8-2"><a href="środowisko-i-konfiguracja.html#cb8-2" tabindex="-1"></a><span class="fu">sudo</span> apt install cmake</span></code></pre></div>
+<p>Zanim uruchomimy VSCode najpierw zainstalujmy cross compiler (dla ARM):</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="środowisko-i-konfiguracja.html#cb9-1" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb9-2"><a href="środowisko-i-konfiguracja.html#cb9-2" tabindex="-1"></a><span class="fu">sudo</span> apt-get install build-essential binutils-arm-linux-gnueabihf binutils-arm-linux-gnueabihf-dbg </span></code></pre></div>
+<p>Dodatkowo do pracy z Boost czy Qt potrzebujemy bibliotek na docelową platformę, ale najpierw dodajemy do indeksu APT architekturę ARM:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="środowisko-i-konfiguracja.html#cb10-1" tabindex="-1"></a><span class="fu">sudo</span> dpkg <span class="at">--add-architecture</span> armhf</span></code></pre></div>
+<p>Poniższe polecenia mogą się przydać:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="środowisko-i-konfiguracja.html#cb11-1" tabindex="-1"></a><span class="ex">apt-get</span> install libbsd-dev:armhf</span>
+<span id="cb11-2"><a href="środowisko-i-konfiguracja.html#cb11-2" tabindex="-1"></a><span class="ex">apt-get</span> install libssl-dev:armhf</span>
+<span id="cb11-3"><a href="środowisko-i-konfiguracja.html#cb11-3" tabindex="-1"></a><span class="ex">apt-get</span> install openssl:armhf</span></code></pre></div>
+<p>Instalacja bibliotek boost dla ARM:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="środowisko-i-konfiguracja.html#cb12-1" tabindex="-1"></a><span class="ex">apt-get</span> install libboost-dev:armhf</span>
+<span id="cb12-2"><a href="środowisko-i-konfiguracja.html#cb12-2" tabindex="-1"></a><span class="ex">apt-get</span> install libboost-system1.67-dev:armhf</span>
+<span id="cb12-3"><a href="środowisko-i-konfiguracja.html#cb12-3" tabindex="-1"></a><span class="ex">apt-get</span> install libboost-thread1.67-dev:armhf</span>
+<span id="cb12-4"><a href="środowisko-i-konfiguracja.html#cb12-4" tabindex="-1"></a><span class="ex">apt-get</span> install libboost-filesystem1.67-dev:armhf</span></code></pre></div>
+<p>Instalacja bibliotek Qt5 dla ARM:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="środowisko-i-konfiguracja.html#cb13-1" tabindex="-1"></a><span class="ex">apt-get</span> install qtdeclarative5-dev:armhf</span>
+<span id="cb13-2"><a href="środowisko-i-konfiguracja.html#cb13-2" tabindex="-1"></a><span class="ex">apt-get</span> install libqt5charts5-dev:armhf</span></code></pre></div>
+<p>Do pracy w VSCode z c++ zainstalujmy kilka rozszerzeń:</p>
+<ul>
+<li>Rozszerzenie <strong>C/C++</strong> (by <em>Microsoft</em>)</li>
+<li>Rozszerzenie <strong>CMake</strong> (by <em>twxs</em>)</li>
+<li>Rozszerzenie <strong>CMake Tools</strong> (by <em>Microsoft</em>)</li>
+<li>Rozszerzenie <strong>Native Debug</strong> (by <em>WebFreak</em>)</li>
+</ul>
+<p>Poniżej screeny:</p>
+<p><img src="img/ExtensionC.png" style="width:100.0%" /></p>
+<p><img src="img/ExtensionCmake.png" style="width:100.0%" /></p>
+<p>Na początek utwórzmy nowy katalog:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="środowisko-i-konfiguracja.html#cb14-1" tabindex="-1"></a><span class="fu">mkdir</span> cmakeQuickStart</span>
+<span id="cb14-2"><a href="środowisko-i-konfiguracja.html#cb14-2" tabindex="-1"></a><span class="bu">cd</span> cmakeQuickStart</span>
+<span id="cb14-3"><a href="środowisko-i-konfiguracja.html#cb14-3" tabindex="-1"></a><span class="ex">code</span> .</span></code></pre></div>
+<p>Zobaczmy szablon jaki <em>produkuje</em> rozszerzenie CMake:</p>
+<p><img src="img/CmakeQuickStart.png" style="width:100.0%" /></p>
+<p>Wybierzmy od razu cross compiler:</p>
+<p><img src="img/Commpiler.png" style="width:100.0%" /></p>
+<p>Wskazujemy, że chcemy konfigurację do kompilacji aplikacji:</p>
+<p><img src="img/Executable.png" style="width:100.0%" /></p>
+<p>Wpisujemy nazwę projektu:</p>
+<p><img src="img/ProjectName.png" style="width:100.0%" /></p>
+<p>Pod spodem powstało kilka plików (wykonane zostało następujące polecenie cmake):</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="środowisko-i-konfiguracja.html#cb15-1" tabindex="-1"></a><span class="ex">/usr/bin/cmake</span> <span class="at">--no-warn-unused-cli</span> <span class="at">-DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL</span><span class="op">=</span>TRUE <span class="at">-DCMAKE_BUILD_TYPE:STRING</span><span class="op">=</span>Debug <span class="at">-DCMAKE_C_COMPILER:FILEPATH</span><span class="op">=</span>/usr/bin/arm-linux-gnueabihf-gcc <span class="at">-DCMAKE_CXX_COMPILER:FILEPATH</span><span class="op">=</span>/usr/bin/arm-linux-gnueabihf-g++ <span class="at">-S</span>/home/user/cmakeQuickStart <span class="at">-B</span>/home/user/cmakeQuickStart/build <span class="at">-G</span> <span class="st">&quot;Unix Makefiles&quot;</span></span></code></pre></div>
+<p>W katalogu powstał plik <em>CMakeLists.txt</em>:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb16-1"><a href="środowisko-i-konfiguracja.html#cb16-1" tabindex="-1"></a><span class="kw">cmake_minimum_required</span>(<span class="ot">VERSION</span> <span class="dt">3.0.0</span>)</span>
+<span id="cb16-2"><a href="środowisko-i-konfiguracja.html#cb16-2" tabindex="-1"></a><span class="kw">project</span>(quickstart <span class="ot">VERSION</span> <span class="dt">0.1.0</span>)</span>
+<span id="cb16-3"><a href="środowisko-i-konfiguracja.html#cb16-3" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="środowisko-i-konfiguracja.html#cb16-4" tabindex="-1"></a><span class="kw">include</span>(<span class="im">CTest</span>)</span>
+<span id="cb16-5"><a href="środowisko-i-konfiguracja.html#cb16-5" tabindex="-1"></a><span class="kw">enable_testing</span>()</span>
+<span id="cb16-6"><a href="środowisko-i-konfiguracja.html#cb16-6" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="środowisko-i-konfiguracja.html#cb16-7" tabindex="-1"></a><span class="kw">add_executable</span>(<span class="bn">quickstart</span> main.cpp)</span>
+<span id="cb16-8"><a href="środowisko-i-konfiguracja.html#cb16-8" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="środowisko-i-konfiguracja.html#cb16-9" tabindex="-1"></a><span class="kw">set</span>(CPACK_PROJECT_NAME <span class="dv">${PROJECT_NAME}</span>)</span>
+<span id="cb16-10"><a href="środowisko-i-konfiguracja.html#cb16-10" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CPACK_PROJECT_VERSION</span> <span class="dv">${PROJECT_VERSION}</span>)</span>
+<span id="cb16-11"><a href="środowisko-i-konfiguracja.html#cb16-11" tabindex="-1"></a><span class="kw">include</span>(<span class="im">CPack</span>)</span></code></pre></div>
+<div id="o-plikach-cmakelists.txt" class="section level3 hasAnchor" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> O plikach <em>CMakeLists.txt</em><a href="środowisko-i-konfiguracja.html#o-plikach-cmakelists.txt" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>W zależności od używanych funkcji i ich pojawienia się na przestrzeni czasu, minimalna wymagana wersja cmake:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb17-1"><a href="środowisko-i-konfiguracja.html#cb17-1" tabindex="-1"></a><span class="kw">cmake_minimum_required</span>(<span class="ot">VERSION</span> <span class="dt">3.0.0</span>)</span></code></pre></div>
+<p>Nazwa opisywanego projektu:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb18-1"><a href="środowisko-i-konfiguracja.html#cb18-1" tabindex="-1"></a><span class="kw">project</span>(quickstart <span class="ot">VERSION</span> <span class="dt">0.1.0</span>)</span></code></pre></div>
+<p>Dołączenie modułu <strong>CTest</strong>:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb19-1"><a href="środowisko-i-konfiguracja.html#cb19-1" tabindex="-1"></a><span class="kw">include</span>(<span class="im">CTest</span>)</span></code></pre></div>
+<p>załączenie testów (uwaga: <em>enable_testing</em> jest wołany w <em>include(CTest)</em>) :</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb20-1"><a href="środowisko-i-konfiguracja.html#cb20-1" tabindex="-1"></a><span class="kw">enable_testing</span>()</span></code></pre></div>
+<p>Wskazanie z jakich źródeł ma budować aplikację (w dalszej części opisze jak wyszukiwać źródła):</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb21-1"><a href="środowisko-i-konfiguracja.html#cb21-1" tabindex="-1"></a><span class="kw">add_executable</span>(<span class="bn">quickstart</span> main.cpp)</span></code></pre></div>
+<p>Pakowanie oprogramowania (zautomatyzuje utworzenie zip, instalatora, ale sam tego nie zrobi):</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb22-1"><a href="środowisko-i-konfiguracja.html#cb22-1" tabindex="-1"></a><span class="kw">set</span>(CPACK_PROJECT_NAME <span class="dv">${PROJECT_NAME}</span>)</span>
+<span id="cb22-2"><a href="środowisko-i-konfiguracja.html#cb22-2" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CPACK_PROJECT_VERSION</span> <span class="dv">${PROJECT_VERSION}</span>)</span>
+<span id="cb22-3"><a href="środowisko-i-konfiguracja.html#cb22-3" tabindex="-1"></a><span class="kw">include</span>(<span class="im">CPack</span>)</span></code></pre></div>
+<div id="bardziej-rozbudowany-projekt" class="section level4 hasAnchor" number="1.3.1.1">
+<h4><span class="header-section-number">1.3.1.1</span> Bardziej rozbudowany projekt<a href="środowisko-i-konfiguracja.html#bardziej-rozbudowany-projekt" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Cmake może służyć do zarządzania wieloma projektami. Kompilacja odbywa się kaskadowo w zależności jak sporządzimy pliki <em>CMakeLists.txt</em>. Poniżej opiszę sytuację podobną do tej z Microsoft Visual Studio, czyli rozwiązania i projekty oraz przedstawię kilka informacji o języku cmake.</p>
+<p>Wypisywanie informacji na ekranie oraz instrukcja warunkowa:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb23-1"><a href="środowisko-i-konfiguracja.html#cb23-1" tabindex="-1"></a><span class="kw">message</span>(<span class="st">&quot;Informacja wypisywana podczas użycia cmake&quot;</span>)</span>
+<span id="cb23-2"><a href="środowisko-i-konfiguracja.html#cb23-2" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="środowisko-i-konfiguracja.html#cb23-3" tabindex="-1"></a><span class="cf">if</span>(<span class="st">&quot;</span><span class="dv">${CMAKE_BUILD_TYPE}</span><span class="st">&quot;</span> <span class="ot">STREQUAL</span> <span class="st">&quot;Release&quot;</span>)</span>
+<span id="cb23-4"><a href="środowisko-i-konfiguracja.html#cb23-4" tabindex="-1"></a>    <span class="kw">message</span>(<span class="st">&quot;Konfiguracja kompilacji Release&quot;</span>)</span>
+<span id="cb23-5"><a href="środowisko-i-konfiguracja.html#cb23-5" tabindex="-1"></a><span class="cf">else</span>()</span>
+<span id="cb23-6"><a href="środowisko-i-konfiguracja.html#cb23-6" tabindex="-1"></a>    <span class="kw">message</span>(<span class="st">&quot;Konfiguracja kompilacji prawdopodobnie Debug&quot;</span>)</span>
+<span id="cb23-7"><a href="środowisko-i-konfiguracja.html#cb23-7" tabindex="-1"></a><span class="cf">endif</span>()</span></code></pre></div>
+<p>Dodanie flagi do kompilacji plików źródłowych (wszystkich na raz lub pojedynczo):</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb24-1"><a href="środowisko-i-konfiguracja.html#cb24-1" tabindex="-1"></a><span class="kw">add_definitions</span>(-DCMAKE_EXPORT_COMPILE_COMMANDS=<span class="ot">ON</span>)</span>
+<span id="cb24-2"><a href="środowisko-i-konfiguracja.html#cb24-2" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="środowisko-i-konfiguracja.html#cb24-3" tabindex="-1"></a><span class="kw">add_definitions</span>(</span>
+<span id="cb24-4"><a href="środowisko-i-konfiguracja.html#cb24-4" tabindex="-1"></a>    -DUNICODE</span>
+<span id="cb24-5"><a href="środowisko-i-konfiguracja.html#cb24-5" tabindex="-1"></a>    -D__USE_LARGEFILE64=1</span>
+<span id="cb24-6"><a href="środowisko-i-konfiguracja.html#cb24-6" tabindex="-1"></a>    -DNOMINMAX=1</span>
+<span id="cb24-7"><a href="środowisko-i-konfiguracja.html#cb24-7" tabindex="-1"></a>    -DBOOST_ALL_NO_LIB</span>
+<span id="cb24-8"><a href="środowisko-i-konfiguracja.html#cb24-8" tabindex="-1"></a>    )</span></code></pre></div>
+<p>Użyte flagi oznaczają:</p>
+<ul>
+<li>CMAKE_EXPORT_COMPILE_COMMANDS - generuje plik <em>compile_commands.json</em> zawierający wszystkie wywołania kompilatora (nie linkera),</li>
+<li>UNICODE - używana strona kodowa w projekcie,</li>
+<li>__USE_LARGEFILE64 - użycie rozszerzonych metod dostępu do plików (większych niż ~2GB, fopen staje się fopen64 itd.),</li>
+<li>NOMINMAX - wykluczenie wbudowanych definicji dla min i max (które będą problemem podczas używania std::min, std::max),</li>
+<li>BOOST_ALL_NO_LIB - gdy z góry wiemy, które biblioteki boost mają zostać dołączone.</li>
+</ul>
+<p>Ustawianie standardu języka c/c++:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb25-1"><a href="środowisko-i-konfiguracja.html#cb25-1" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CMAKE_C_STANDARD</span> 11)</span>
+<span id="cb25-2"><a href="środowisko-i-konfiguracja.html#cb25-2" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CMAKE_C_STANDARD_REQUIRED</span> True)</span>
+<span id="cb25-3"><a href="środowisko-i-konfiguracja.html#cb25-3" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CMAKE_CXX_STANDARD</span> 17)</span>
+<span id="cb25-4"><a href="środowisko-i-konfiguracja.html#cb25-4" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CMAKE_CXX_STANDARD_REQUIRED</span> True)</span></code></pre></div>
+<p>Ustawienie katalogu instalacji:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb26-1"><a href="środowisko-i-konfiguracja.html#cb26-1" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CMAKE_INSTALL_PREFIX</span> <span class="st">&quot;</span><span class="dv">${CMAKE_CURRENT_SOURCE_DIR}</span><span class="st">/bin&quot;</span>)</span></code></pre></div>
+<p>Zmienna <em>CMAKE_CURRENT_SOURCE_DIR</em> wskazuje na katalog główny projektu.</p>
+<p>Ustawienie dodatkowych flag kompilatora dla wersji <em>Debug</em>:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb27-1"><a href="środowisko-i-konfiguracja.html#cb27-1" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CMAKE_CXX_FLAGS_DEBUG</span> <span class="st">&quot;</span><span class="dv">${CMAKE_CXX_FLAGS_DEBUG}</span><span class="st"> -g&quot;</span>)</span></code></pre></div>
+<p>Ustawienie dodatkowych flag kompilatora dla wersji <em>Release</em>:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb28-1"><a href="środowisko-i-konfiguracja.html#cb28-1" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CMAKE_CXX_FLAGS_RELEASE</span> <span class="st">&quot;</span><span class="dv">${CMAKE_CXX_FLAGS_RELEASE}</span><span class="st"> -DNDEBUG&quot;</span>)</span></code></pre></div>
+<p>Wskazywanie dodatkowych katalogów nagłówków:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb29-1"><a href="środowisko-i-konfiguracja.html#cb29-1" tabindex="-1"></a><span class="kw">include_directories</span>(common googletest-<span class="dt">1.12.1</span>/googletest/include)</span></code></pre></div>
+<p>Powyższe katalogi wskazują na projekt (w tym przypadku bibliotekę statyczną) oraz umieszczony w rozwiązaniu <em>googletest</em>.</p>
+<p>Wskazywanie katalogów z dodatkowymi bibliotekami:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb30-1"><a href="środowisko-i-konfiguracja.html#cb30-1" tabindex="-1"></a><span class="kw">link_directories</span>(googletest-<span class="dt">1.12.1</span>/buildARM/<span class="dv">${CMAKE_BUILD_TYPE}</span>/lib)</span></code></pre></div>
+<p>GoogleTest skompilowany na ARM w głównym folderze projektu, gdzie:</p>
+<ul>
+<li>buildARM - wybrana nazwa folderu dla kompilacji na ARM,</li>
+<li>CMAKE_BUILD_TYPE - to wersja kompilacji (Debug, Release).</li>
+</ul>
+<p>Dodawanie katalogów projektów:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb31-1"><a href="środowisko-i-konfiguracja.html#cb31-1" tabindex="-1"></a><span class="kw">add_subdirectory</span>(common)</span>
+<span id="cb31-2"><a href="środowisko-i-konfiguracja.html#cb31-2" tabindex="-1"></a><span class="kw">add_subdirectory</span>(aplikacja)</span>
+<span id="cb31-3"><a href="środowisko-i-konfiguracja.html#cb31-3" tabindex="-1"></a><span class="kw">add_subdirectory</span>(unittests)</span></code></pre></div>
+<p>gdzie:</p>
+<ul>
+<li>common - będzie biblioteką wspólną dla projektu,</li>
+<li>aplikacja - wynikiem kompilacji jest plik wykonywalny,</li>
+<li>unittests - testy powyższych projektów w GoogleTest.</li>
+</ul>
+<p>Dołączanie bibliotek dla całego rozwiązania:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb32-1"><a href="środowisko-i-konfiguracja.html#cb32-1" tabindex="-1"></a><span class="kw">link_libraries</span>(glibc)</span>
+<span id="cb32-2"><a href="środowisko-i-konfiguracja.html#cb32-2" tabindex="-1"></a><span class="kw">link_libraries</span>(bsd) </span></code></pre></div>
+<p>gdzie:</p>
+<ul>
+<li>glibc - podstawowe biblioteki podczas pisania na Linuksie (np. open, read, write, malloc, printf, getaddrinfo, dlopen, pthread_create, crypt, login, exit),</li>
+<li>bsd - zawiera funkcje wypracowane w systemach BSD, a których brak w innych systemach doskwiera.</li>
+</ul>
+<p>Rekursywne wyszukanie plików źródłowych:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb33-1"><a href="środowisko-i-konfiguracja.html#cb33-1" tabindex="-1"></a><span class="kw">file</span>(<span class="ot">GLOB_RECURSE</span> common_CPP <span class="st">&quot;*.cpp&quot;</span> <span class="st">&quot;*.c&quot;</span>)</span>
+<span id="cb33-2"><a href="środowisko-i-konfiguracja.html#cb33-2" tabindex="-1"></a><span class="kw">file</span>(<span class="ot">GLOB_RECURSE</span> common_HPP <span class="st">&quot;*.hpp&quot;</span> <span class="st">&quot;*.h&quot;</span>)</span></code></pre></div>
+<p>Polecenie <code>file</code> przyjmuje:</p>
+<ul>
+<li><strong>GLOB</strong> &lt; zmienna wyjściowa &gt; &lt; wyrażenie regularne &gt; - wyszukiwanie plików w bieżącym katalogu</li>
+<li><strong>GLOB_RECURSE</strong> &lt; zmienna wyjściowa &gt; &lt; wyrażenie regularne &gt; - wyszukiwanie plików w całym katalogu (podkatalogach, itd.)</li>
+<li><strong>READ</strong> &lt; nazwa pliku &gt; &lt; zmienna wyjściowa &gt; - wczytanie pliku tekstowego do zmiennej</li>
+<li><strong>WRITE</strong> &lt; nazwa pliku &gt; &lt; zawartość &gt; - zapisanie zawartości zmiennej do pliku</li>
+<li><strong>APPEND</strong> &lt; nazwa pliku &gt; &lt; zawartość &gt; - dopisanie zawartości zmiennej do pliku</li>
+<li><strong>MAKE_DIRECTORY</strong> &lt; folder &gt; - utworzenie katalogu</li>
+<li><strong>REMOVE</strong> &lt; plik(i) &gt; - usunięcie pliku</li>
+<li><strong>REMOVE_RECURSE</strong> &lt; plik(i) &gt; - usunięcie pliku lub katalogu</li>
+<li><strong>RENAME</strong> &lt; ścieżka do pliku &gt; &lt; ścieżka wyjściowa &gt; - przeniesienie pliku lub katalogu</li>
+<li><strong>COPY</strong> &lt; plik(i) &gt; &lt; ścieżka wyjściowa &gt; - kopiowanie pliku lub katalogu</li>
+</ul>
+<p>Dołączenie podstawowych bibliotek z Boost:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb34-1"><a href="środowisko-i-konfiguracja.html#cb34-1" tabindex="-1"></a><span class="kw">find_package</span>(<span class="im">Boost</span> <span class="ot">COMPONENTS</span> system thread container bind filesystem <span class="ot">REQUIRED</span>)</span></code></pre></div>
+<p>Wskazanie źródeł, z których będzie budowana biblioteka:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb35-1"><a href="środowisko-i-konfiguracja.html#cb35-1" tabindex="-1"></a><span class="kw">add_library</span>(<span class="bn">common</span> <span class="dv">${common_HPP}</span> <span class="dv">${common_CPP}</span>)</span></code></pre></div>
+<p>Wskazanie źródeł, z których będzie budowana aplikacja:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb36-1"><a href="środowisko-i-konfiguracja.html#cb36-1" tabindex="-1"></a><span class="kw">add_executable</span>(<span class="bn">aplikacja</span> <span class="dv">${aplikacja_CPP}</span>)</span></code></pre></div>
+<p>Dodawanie używanych bibliotek aplikacji dla linkera:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb37-1"><a href="środowisko-i-konfiguracja.html#cb37-1" tabindex="-1"></a><span class="kw">set</span>(LIBS_TO_LINK -lm -lpthread -ldl -lrt -lz -lstdc++fs -lbsd -lzmq -lbson-<span class="dt">1.0</span> -lcrypto -lzstd -lfmtd -lspdlogd)</span>
+<span id="cb37-2"><a href="środowisko-i-konfiguracja.html#cb37-2" tabindex="-1"></a><span class="kw">target_link_libraries</span>(<span class="bn">aplikacja</span> <span class="ot">PRIVATE</span> common <span class="dv">${Boost_LIBRARIES}</span> <span class="dv">${LIBS_TO_LINK}</span>)</span></code></pre></div>
+<p>Dodawanie ścieżki do plików nagłówkowych:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb38-1"><a href="środowisko-i-konfiguracja.html#cb38-1" tabindex="-1"></a><span class="kw">target_include_directories</span>(<span class="bn">aplikacja</span> <span class="ot">PRIVATE</span> <span class="dv">${CMAKE_CURRENT_SOURCE_DIR}</span>)</span></code></pre></div>
+<p>gdzie:</p>
+<ul>
+<li><strong>PRIVATE</strong> - określa zasięg widoczności tylko do aktualnego projektu,</li>
+<li><strong>CMAKE_CURRENT_SOURCE_DIR</strong> - ścieżka do aktualnego projektu.</li>
+</ul>
+<p>Utworzenie folderu wyjściowego przed kompilacją aplikacji:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb39-1"><a href="środowisko-i-konfiguracja.html#cb39-1" tabindex="-1"></a><span class="kw">add_custom_command</span>(</span>
+<span id="cb39-2"><a href="środowisko-i-konfiguracja.html#cb39-2" tabindex="-1"></a>    <span class="ot">TARGET</span> <span class="bn">aplikacja</span></span>
+<span id="cb39-3"><a href="środowisko-i-konfiguracja.html#cb39-3" tabindex="-1"></a>    <span class="bn">PRE_BUILD</span></span>
+<span id="cb39-4"><a href="środowisko-i-konfiguracja.html#cb39-4" tabindex="-1"></a>    <span class="bn">COMMAND</span> <span class="dv">${CMAKE_COMMAND}</span> <span class="bn">-E</span> <span class="bn">make_directory</span> <span class="st">&quot;</span><span class="dv">${CMAKE_SOURCE_DIR}</span><span class="st">/</span><span class="dv">${CMAKE_BUILD_TYPE}${RELTYP}</span><span class="st">&quot;</span></span>
+<span id="cb39-5"><a href="środowisko-i-konfiguracja.html#cb39-5" tabindex="-1"></a>)</span></code></pre></div>
+<p>gdzie:</p>
+<ul>
+<li><strong>TARGET</strong> - wskazanie celu,</li>
+<li><strong>PRE_BUILD</strong> - wykonanie przed budowaniem,</li>
+<li><strong>COMMAND</strong> - polecenie,</li>
+<li><strong>CMAKE_COMMAND</strong> - pełna ścieżka do CMake,</li>
+<li><code>cmake -E make_directory</code> - utworzenie folderu za pomocą CMake.</li>
+</ul>
+<p>Skopiowanie pliku wyjściowego (aplikacji) do innego folderu:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb40-1"><a href="środowisko-i-konfiguracja.html#cb40-1" tabindex="-1"></a><span class="kw">add_custom_command</span>(</span>
+<span id="cb40-2"><a href="środowisko-i-konfiguracja.html#cb40-2" tabindex="-1"></a>    <span class="ot">TARGET</span> <span class="bn">aplikacja</span></span>
+<span id="cb40-3"><a href="środowisko-i-konfiguracja.html#cb40-3" tabindex="-1"></a>    <span class="bn">POST_BUILD</span></span>
+<span id="cb40-4"><a href="środowisko-i-konfiguracja.html#cb40-4" tabindex="-1"></a>    <span class="bn">COMMAND</span> <span class="dv">${CMAKE_COMMAND}</span> <span class="bn">-E</span> <span class="bn">copy</span></span>
+<span id="cb40-5"><a href="środowisko-i-konfiguracja.html#cb40-5" tabindex="-1"></a>    <span class="ot">$&lt;</span><span class="kw">TARGET_FILE</span><span class="ot">:aplikacja&gt;</span></span>
+<span id="cb40-6"><a href="środowisko-i-konfiguracja.html#cb40-6" tabindex="-1"></a>    <span class="dv">${CMAKE_SOURCE_DIR}</span><span class="er">/${CMAKE_BUILD_TYPE}${RELTYP}/$&lt;TARGET_FILE_NAME:aplikacja&gt;</span></span></code></pre></div>
+<p>gdzie:</p>
+<ul>
+<li><strong>POST_BUILD</strong> - wykonanie po budowaniu,</li>
+<li><code>cmake -E copy</code> - kopiowanie pliku,</li>
+<li><strong>CMAKE_SOURCE_DIR</strong> - ścieżka rozwiązania (nie projektu),</li>
+<li><strong>CMAKE_BUILD_TYPE</strong> - <em>Debug</em>, <em>Release</em>,</li>
+<li><strong>RELTYP</strong> - definicja zmiennej, w tym wypadku określam inny folder do budowania na ARM,</li>
+<li><code>$&lt;TARGET_FILE:aplikacja&gt;</code> - nazwa pliku wykonywalnego, biblioteki (z rozszerzeniem),</li>
+<li><code>$&lt;TARGET_FILE_NAME:aplikacja&gt;</code> - ścieżka pliku wykonywalnego, biblioteki.</li>
+</ul>
+<p>Kompilacja rozwiązania dla ARM:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb41-1"><a href="środowisko-i-konfiguracja.html#cb41-1" tabindex="-1"></a><span class="fu">cmake -S ../../ -DCMAKE_BUILD_TYPE=Release -D CMAKE_C_COMPILER=arm-linux-gnueabihf-gcc -D CMAKE_CXX_COMPILER=arm-linux-gnueabihf-g++ -D RELTYP=&quot;ARM&quot;</span></span></code></pre></div>
+<p>Argument <code>-S ../../</code> oznacza podanie ścieżki, gdzie znajduje się główny <em>CMakeLists.txt</em> projektu. Definicje <em>CMAKE_C_COMPILER</em>, <em>CMAKE_CXX_COMPILER</em> wskazują kompilatory, natomiast <em>RELTYP</em> nie jest z niczym specjalnym związany. Na potrzeby swoich projektów można definiować własne wartości.</p>
+<p>Całość wyglądać będzie następująco:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb42-1"><a href="środowisko-i-konfiguracja.html#cb42-1" tabindex="-1"></a><span class="co"># Główny CMakeLists.txt (Rozwiązania)</span></span>
+<span id="cb42-2"><a href="środowisko-i-konfiguracja.html#cb42-2" tabindex="-1"></a><span class="kw">project</span>(major_solution <span class="ot">VERSION</span> <span class="dt">0.1.0</span>)</span>
+<span id="cb42-3"><a href="środowisko-i-konfiguracja.html#cb42-3" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="środowisko-i-konfiguracja.html#cb42-4" tabindex="-1"></a><span class="kw">add_definitions</span>(-DCMAKE_EXPORT_COMPILE_COMMANDS=<span class="ot">ON</span>)</span>
+<span id="cb42-5"><a href="środowisko-i-konfiguracja.html#cb42-5" tabindex="-1"></a></span>
+<span id="cb42-6"><a href="środowisko-i-konfiguracja.html#cb42-6" tabindex="-1"></a><span class="kw">add_definitions</span>(</span>
+<span id="cb42-7"><a href="środowisko-i-konfiguracja.html#cb42-7" tabindex="-1"></a>    -DUNICODE</span>
+<span id="cb42-8"><a href="środowisko-i-konfiguracja.html#cb42-8" tabindex="-1"></a>    -D__USE_LARGEFILE64=1</span>
+<span id="cb42-9"><a href="środowisko-i-konfiguracja.html#cb42-9" tabindex="-1"></a>    -DNOMINMAX=1</span>
+<span id="cb42-10"><a href="środowisko-i-konfiguracja.html#cb42-10" tabindex="-1"></a>    -DBOOST_ALL_NO_LIB</span>
+<span id="cb42-11"><a href="środowisko-i-konfiguracja.html#cb42-11" tabindex="-1"></a>    )</span>
+<span id="cb42-12"><a href="środowisko-i-konfiguracja.html#cb42-12" tabindex="-1"></a>        </span>
+<span id="cb42-13"><a href="środowisko-i-konfiguracja.html#cb42-13" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CMAKE_C_STANDARD</span> 11)</span>
+<span id="cb42-14"><a href="środowisko-i-konfiguracja.html#cb42-14" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CMAKE_C_STANDARD_REQUIRED</span> True)</span>
+<span id="cb42-15"><a href="środowisko-i-konfiguracja.html#cb42-15" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CMAKE_CXX_STANDARD</span> 17)</span>
+<span id="cb42-16"><a href="środowisko-i-konfiguracja.html#cb42-16" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CMAKE_CXX_STANDARD_REQUIRED</span> True)</span>
+<span id="cb42-17"><a href="środowisko-i-konfiguracja.html#cb42-17" tabindex="-1"></a></span>
+<span id="cb42-18"><a href="środowisko-i-konfiguracja.html#cb42-18" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CMAKE_INSTALL_PREFIX</span> <span class="st">&quot;</span><span class="dv">${CMAKE_CURRENT_SOURCE_DIR}</span><span class="st">/bin&quot;</span>)</span>
+<span id="cb42-19"><a href="środowisko-i-konfiguracja.html#cb42-19" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CMAKE_CXX_FLAGS_DEBUG</span> <span class="st">&quot;</span><span class="dv">${CMAKE_CXX_FLAGS_DEBUG}</span><span class="st"> -g&quot;</span>)</span>
+<span id="cb42-20"><a href="środowisko-i-konfiguracja.html#cb42-20" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CMAKE_CXX_FLAGS_RELEASE</span> <span class="st">&quot;</span><span class="dv">${CMAKE_CXX_FLAGS_RELEASE}</span><span class="st"> -DNDEBUG&quot;</span>)</span>
+<span id="cb42-21"><a href="środowisko-i-konfiguracja.html#cb42-21" tabindex="-1"></a></span>
+<span id="cb42-22"><a href="środowisko-i-konfiguracja.html#cb42-22" tabindex="-1"></a><span class="kw">include_directories</span>(common fmt-<span class="dt">9.1.0</span>/include flatbuffers-<span class="dt">1.12.0</span>/include spdlog-<span class="dt">1.10.0</span>/include nlohmann-<span class="dt">3.11.2</span> zstd-<span class="dt">1.5.2</span>/lib googletest-<span class="dt">1.12.1</span>/googletest/include)</span>
+<span id="cb42-23"><a href="środowisko-i-konfiguracja.html#cb42-23" tabindex="-1"></a></span>
+<span id="cb42-24"><a href="środowisko-i-konfiguracja.html#cb42-24" tabindex="-1"></a><span class="cf">if</span>(<span class="st">&quot;</span><span class="dv">${RELTYP}</span><span class="st">&quot;</span> <span class="ot">STREQUAL</span> <span class="st">&quot;ARM&quot;</span>)</span>
+<span id="cb42-25"><a href="środowisko-i-konfiguracja.html#cb42-25" tabindex="-1"></a>    <span class="kw">message</span>(<span class="st">&quot;Arm...&quot;</span>)</span>
+<span id="cb42-26"><a href="środowisko-i-konfiguracja.html#cb42-26" tabindex="-1"></a>    <span class="kw">link_directories</span>(fmt-<span class="dt">9.1.0</span>/buildARM/<span class="dv">${CMAKE_BUILD_TYPE}</span> flatbuffers-<span class="dt">1.12.0</span>/buildARM/<span class="dv">${CMAKE_BUILD_TYPE}</span> spdlog-<span class="dt">1.10.0</span>/buildARM/<span class="dv">${CMAKE_BUILD_TYPE}</span> zstd-<span class="dt">1.5.2</span>/buildARM/<span class="dv">${CMAKE_BUILD_TYPE}</span>/lib googletest-<span class="dt">1.12.1</span>/buildARM/<span class="dv">${CMAKE_BUILD_TYPE}</span>/lib)</span>
+<span id="cb42-27"><a href="środowisko-i-konfiguracja.html#cb42-27" tabindex="-1"></a><span class="cf">else</span>()</span>
+<span id="cb42-28"><a href="środowisko-i-konfiguracja.html#cb42-28" tabindex="-1"></a>    <span class="kw">message</span>(<span class="st">&quot;Normal...&quot;</span>)</span>
+<span id="cb42-29"><a href="środowisko-i-konfiguracja.html#cb42-29" tabindex="-1"></a>    <span class="kw">link_directories</span>(fmt-<span class="dt">9.1.0</span>/build/<span class="dv">${CMAKE_BUILD_TYPE}</span> flatbuffers-<span class="dt">1.12.0</span>/build/<span class="dv">${CMAKE_BUILD_TYPE}</span> spdlog-<span class="dt">1.10.0</span>/build/<span class="dv">${CMAKE_BUILD_TYPE}</span> zstd-<span class="dt">1.5.2</span>/build/<span class="dv">${CMAKE_BUILD_TYPE}</span>/lib googletest-<span class="dt">1.12.1</span>/build/<span class="dv">${CMAKE_BUILD_TYPE}</span>/lib)</span>
+<span id="cb42-30"><a href="środowisko-i-konfiguracja.html#cb42-30" tabindex="-1"></a><span class="cf">endif</span>()</span>
+<span id="cb42-31"><a href="środowisko-i-konfiguracja.html#cb42-31" tabindex="-1"></a></span>
+<span id="cb42-32"><a href="środowisko-i-konfiguracja.html#cb42-32" tabindex="-1"></a><span class="kw">add_subdirectory</span>(common)</span>
+<span id="cb42-33"><a href="środowisko-i-konfiguracja.html#cb42-33" tabindex="-1"></a><span class="kw">add_subdirectory</span>(aplikacja)</span>
+<span id="cb42-34"><a href="środowisko-i-konfiguracja.html#cb42-34" tabindex="-1"></a><span class="kw">add_subdirectory</span>(unittests)</span>
+<span id="cb42-35"><a href="środowisko-i-konfiguracja.html#cb42-35" tabindex="-1"></a></span>
+<span id="cb42-36"><a href="środowisko-i-konfiguracja.html#cb42-36" tabindex="-1"></a><span class="kw">link_libraries</span>(glibc)</span>
+<span id="cb42-37"><a href="środowisko-i-konfiguracja.html#cb42-37" tabindex="-1"></a><span class="kw">link_libraries</span>(bsd) </span></code></pre></div>
+<p>Biblioteka <em>common</em>:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb43-1"><a href="środowisko-i-konfiguracja.html#cb43-1" tabindex="-1"></a><span class="kw">file</span>(<span class="ot">GLOB_RECURSE</span> common_CPP <span class="st">&quot;*.cpp&quot;</span> <span class="st">&quot;*.c&quot;</span>)</span>
+<span id="cb43-2"><a href="środowisko-i-konfiguracja.html#cb43-2" tabindex="-1"></a><span class="kw">file</span>(<span class="ot">GLOB_RECURSE</span> common_HPP <span class="st">&quot;*.hpp&quot;</span> <span class="st">&quot;*.h&quot;</span>)</span>
+<span id="cb43-3"><a href="środowisko-i-konfiguracja.html#cb43-3" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="środowisko-i-konfiguracja.html#cb43-4" tabindex="-1"></a><span class="kw">add_library</span>(<span class="bn">common</span> <span class="dv">${common_HPP}</span> <span class="dv">${common_CPP}</span>)</span>
+<span id="cb43-5"><a href="środowisko-i-konfiguracja.html#cb43-5" tabindex="-1"></a><span class="kw">target_include_directories</span>(<span class="bn">common</span> <span class="ot">PUBLIC</span> <span class="dv">${CMAKE_CURRENT_SOURCE_DIR}</span>)</span></code></pre></div>
+<p>Projekt aplikacji:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb44-1"><a href="środowisko-i-konfiguracja.html#cb44-1" tabindex="-1"></a><span class="kw">file</span>(<span class="ot">GLOB_RECURSE</span> APLIKACJA_SOURCES <span class="st">&quot;*.cpp&quot;</span> <span class="st">&quot;*.hpp&quot;</span> <span class="st">&quot;.c&quot;</span> <span class="st">&quot;.h&quot;</span>)</span>
+<span id="cb44-2"><a href="środowisko-i-konfiguracja.html#cb44-2" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="środowisko-i-konfiguracja.html#cb44-3" tabindex="-1"></a><span class="kw">set</span>(PROJ_NAME aplikacja)</span>
+<span id="cb44-4"><a href="środowisko-i-konfiguracja.html#cb44-4" tabindex="-1"></a></span>
+<span id="cb44-5"><a href="środowisko-i-konfiguracja.html#cb44-5" tabindex="-1"></a><span class="kw">project</span>(<span class="dv">${PROJ_NAME}</span>)</span>
+<span id="cb44-6"><a href="środowisko-i-konfiguracja.html#cb44-6" tabindex="-1"></a></span>
+<span id="cb44-7"><a href="środowisko-i-konfiguracja.html#cb44-7" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">Boost_USE_STATIC_LIBS</span> <span class="ot">OFF</span>) </span>
+<span id="cb44-8"><a href="środowisko-i-konfiguracja.html#cb44-8" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">Boost_USE_MULTITHREADED</span> <span class="ot">ON</span>)  </span>
+<span id="cb44-9"><a href="środowisko-i-konfiguracja.html#cb44-9" tabindex="-1"></a><span class="kw">set</span>(Boost_USE_STATIC_RUNTIME <span class="ot">OFF</span>) </span>
+<span id="cb44-10"><a href="środowisko-i-konfiguracja.html#cb44-10" tabindex="-1"></a></span>
+<span id="cb44-11"><a href="środowisko-i-konfiguracja.html#cb44-11" tabindex="-1"></a><span class="cf">if</span> (<span class="dv">CMAKE_BUILD_TYPE</span> <span class="ot">STREQUAL</span> <span class="st">&quot;Debug&quot;</span>)</span>
+<span id="cb44-12"><a href="środowisko-i-konfiguracja.html#cb44-12" tabindex="-1"></a>  <span class="kw">set</span>(LIBS_TO_LINK -lm -lpthread -ldl -lrt -lz -lstdc++fs -lbsd -lzmq -lbson-<span class="dt">1.0</span> -lcrypto -lzstd -lfmtd -lspdlogd)</span>
+<span id="cb44-13"><a href="środowisko-i-konfiguracja.html#cb44-13" tabindex="-1"></a><span class="cf">else</span> ()</span>
+<span id="cb44-14"><a href="środowisko-i-konfiguracja.html#cb44-14" tabindex="-1"></a>  <span class="kw">set</span>(LIBS_TO_LINK -lm -lpthread -ldl -lrt -lz -lstdc++fs -lbsd -lzmq -lbson-<span class="dt">1.0</span> -lcrypto -lzstd -lfmt -lspdlog)</span>
+<span id="cb44-15"><a href="środowisko-i-konfiguracja.html#cb44-15" tabindex="-1"></a><span class="cf">endif</span> ()</span>
+<span id="cb44-16"><a href="środowisko-i-konfiguracja.html#cb44-16" tabindex="-1"></a></span>
+<span id="cb44-17"><a href="środowisko-i-konfiguracja.html#cb44-17" tabindex="-1"></a><span class="kw">find_package</span>(<span class="im">Boost</span> <span class="ot">COMPONENTS</span> system thread container bind filesystem <span class="ot">REQUIRED</span>)</span>
+<span id="cb44-18"><a href="środowisko-i-konfiguracja.html#cb44-18" tabindex="-1"></a></span>
+<span id="cb44-19"><a href="środowisko-i-konfiguracja.html#cb44-19" tabindex="-1"></a><span class="kw">add_executable</span>(<span class="dv">${PROJ_NAME}</span> <span class="dv">${APLIKACJA_SOURCES}</span>)</span>
+<span id="cb44-20"><a href="środowisko-i-konfiguracja.html#cb44-20" tabindex="-1"></a></span>
+<span id="cb44-21"><a href="środowisko-i-konfiguracja.html#cb44-21" tabindex="-1"></a><span class="kw">target_link_libraries</span>(<span class="dv">${PROJ_NAME}</span> <span class="bn">PRIVATE</span> common <span class="dv">${Boost_LIBRARIES}</span> <span class="dv">${LIBS_TO_LINK}</span>)</span>
+<span id="cb44-22"><a href="środowisko-i-konfiguracja.html#cb44-22" tabindex="-1"></a><span class="kw">target_include_directories</span>(<span class="dv">${PROJ_NAME}</span> <span class="bn">PRIVATE</span> <span class="dv">${CMAKE_CURRENT_SOURCE_DIR}</span>)</span>
+<span id="cb44-23"><a href="środowisko-i-konfiguracja.html#cb44-23" tabindex="-1"></a></span>
+<span id="cb44-24"><a href="środowisko-i-konfiguracja.html#cb44-24" tabindex="-1"></a><span class="kw">add_custom_command</span>(</span>
+<span id="cb44-25"><a href="środowisko-i-konfiguracja.html#cb44-25" tabindex="-1"></a>    <span class="ot">TARGET</span> <span class="dv">${PROJ_NAME}</span></span>
+<span id="cb44-26"><a href="środowisko-i-konfiguracja.html#cb44-26" tabindex="-1"></a>    <span class="bn">PRE_BUILD</span></span>
+<span id="cb44-27"><a href="środowisko-i-konfiguracja.html#cb44-27" tabindex="-1"></a>    <span class="bn">COMMAND</span> <span class="dv">${CMAKE_COMMAND}</span> <span class="bn">-E</span> <span class="bn">make_directory</span> <span class="st">&quot;</span><span class="dv">${CMAKE_SOURCE_DIR}</span><span class="st">/</span><span class="dv">${CMAKE_BUILD_TYPE}${RELTYP}</span><span class="st">&quot;</span></span>
+<span id="cb44-28"><a href="środowisko-i-konfiguracja.html#cb44-28" tabindex="-1"></a>)</span>
+<span id="cb44-29"><a href="środowisko-i-konfiguracja.html#cb44-29" tabindex="-1"></a><span class="kw">add_custom_command</span>(</span>
+<span id="cb44-30"><a href="środowisko-i-konfiguracja.html#cb44-30" tabindex="-1"></a>    <span class="ot">TARGET</span> <span class="dv">${PROJ_NAME}</span></span>
+<span id="cb44-31"><a href="środowisko-i-konfiguracja.html#cb44-31" tabindex="-1"></a>    <span class="bn">POST_BUILD</span></span>
+<span id="cb44-32"><a href="środowisko-i-konfiguracja.html#cb44-32" tabindex="-1"></a>    <span class="bn">COMMAND</span> <span class="dv">${CMAKE_COMMAND}</span> <span class="bn">-E</span> <span class="bn">copy</span></span>
+<span id="cb44-33"><a href="środowisko-i-konfiguracja.html#cb44-33" tabindex="-1"></a>    <span class="ot">$&lt;</span><span class="kw">TARGET_FILE</span><span class="ot">:</span><span class="dv">${PROJ_NAME}</span><span class="ot">&gt;</span></span>
+<span id="cb44-34"><a href="środowisko-i-konfiguracja.html#cb44-34" tabindex="-1"></a>    <span class="dv">${CMAKE_SOURCE_DIR}</span><span class="er">/${CMAKE_BUILD_TYPE}${RELTYP}/$&lt;TARGET_FILE_NAME:${PROJ_NAME}&gt;</span></span>
+<span id="cb44-35"><a href="środowisko-i-konfiguracja.html#cb44-35" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+</div>
+<div id="warto-napisać-skrypt-dla-kompilacji" class="section level3 hasAnchor" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Warto napisać skrypt dla kompilacji<a href="środowisko-i-konfiguracja.html#warto-napisać-skrypt-dla-kompilacji" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Kompilacja na urządzeniu:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb45-1"><a href="środowisko-i-konfiguracja.html#cb45-1" tabindex="-1"></a><span class="co">#!/usr/bin/env bash</span></span>
+<span id="cb45-2"><a href="środowisko-i-konfiguracja.html#cb45-2" tabindex="-1"></a></span>
+<span id="cb45-3"><a href="środowisko-i-konfiguracja.html#cb45-3" tabindex="-1"></a><span class="va">CONF</span><span class="op">=</span><span class="st">&quot;Debug&quot;</span></span>
+<span id="cb45-4"><a href="środowisko-i-konfiguracja.html#cb45-4" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> <span class="st">&quot;</span><span class="va">$#</span><span class="st">&quot;</span> <span class="ot">-gt</span> 0 <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb45-5"><a href="środowisko-i-konfiguracja.html#cb45-5" tabindex="-1"></a>    <span class="va">CONF</span><span class="op">=</span><span class="va">$1</span></span>
+<span id="cb45-6"><a href="środowisko-i-konfiguracja.html#cb45-6" tabindex="-1"></a><span class="cf">fi</span></span>
+<span id="cb45-7"><a href="środowisko-i-konfiguracja.html#cb45-7" tabindex="-1"></a></span>
+<span id="cb45-8"><a href="środowisko-i-konfiguracja.html#cb45-8" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">&quot;build/</span><span class="va">${CONF}</span><span class="st">&quot;</span></span>
+<span id="cb45-9"><a href="środowisko-i-konfiguracja.html#cb45-9" tabindex="-1"></a><span class="bu">cd</span> <span class="st">&quot;build/</span><span class="va">${CONF}</span><span class="st">&quot;</span></span>
+<span id="cb45-10"><a href="środowisko-i-konfiguracja.html#cb45-10" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">-G</span> <span class="st">&quot;CodeLite - Unix Makefiles&quot;</span> <span class="at">-S</span> ../../ <span class="at">-DCMAKE_BUILD_TYPE</span><span class="op">=</span><span class="va">$CONF</span> <span class="at">-DRELTYP</span><span class="op">=</span><span class="st">&quot;&quot;</span></span>
+<span id="cb45-11"><a href="środowisko-i-konfiguracja.html#cb45-11" tabindex="-1"></a><span class="fu">make</span> </span></code></pre></div>
+<p>Kompilacja skrośna (cross compile) na ARM:</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb46-1"><a href="środowisko-i-konfiguracja.html#cb46-1" tabindex="-1"></a><span class="co">#!/usr/bin/env bash</span></span>
+<span id="cb46-2"><a href="środowisko-i-konfiguracja.html#cb46-2" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="środowisko-i-konfiguracja.html#cb46-3" tabindex="-1"></a><span class="va">CONF</span><span class="op">=</span><span class="st">&quot;Release&quot;</span></span>
+<span id="cb46-4"><a href="środowisko-i-konfiguracja.html#cb46-4" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> <span class="st">&quot;</span><span class="va">$#</span><span class="st">&quot;</span> <span class="ot">-gt</span> 0 <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb46-5"><a href="środowisko-i-konfiguracja.html#cb46-5" tabindex="-1"></a>    <span class="va">CONF</span><span class="op">=</span><span class="va">$1</span></span>
+<span id="cb46-6"><a href="środowisko-i-konfiguracja.html#cb46-6" tabindex="-1"></a><span class="cf">fi</span></span>
+<span id="cb46-7"><a href="środowisko-i-konfiguracja.html#cb46-7" tabindex="-1"></a></span>
+<span id="cb46-8"><a href="środowisko-i-konfiguracja.html#cb46-8" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">&quot;buildARM/</span><span class="va">${CONF}</span><span class="st">&quot;</span></span>
+<span id="cb46-9"><a href="środowisko-i-konfiguracja.html#cb46-9" tabindex="-1"></a><span class="bu">cd</span> <span class="st">&quot;buildARM/</span><span class="va">${CONF}</span><span class="st">&quot;</span></span>
+<span id="cb46-10"><a href="środowisko-i-konfiguracja.html#cb46-10" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">-S</span> ../../ <span class="at">-DCMAKE_BUILD_TYPE</span><span class="op">=</span><span class="va">$CONF</span> <span class="at">-D</span> CMAKE_C_COMPILER=arm-linux-gnueabihf-gcc <span class="at">-D</span> CMAKE_CXX_COMPILER=arm-linux-gnueabihf-g++ <span class="at">-DRELTYP</span><span class="op">=</span><span class="st">&quot;ARM&quot;</span></span>
+<span id="cb46-11"><a href="środowisko-i-konfiguracja.html#cb46-11" tabindex="-1"></a><span class="fu">make</span></span></code></pre></div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="debugowanie-zdalne-z-gdb-the-gnu-project-debugger.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub", "_main.mobi"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
